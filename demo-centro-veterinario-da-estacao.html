@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="pt-PT" data-lang="pt">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<!-- ===========================================================
+     DEMO — CENTRO VETERINÁRIO DA ESTAÇÃO (baixa de Faro)
+     BILINGUE PT/EN — Faro (cidade turística/expat).
+     PITCH: substituir o site atual (subdomínio gratuito wixsite.com)
+     por um site profissional, com domínio próprio e marcação online.
+     Dados reais: morada, telefones (fixo + urgências/telemóvel),
+     horário, serviços, tagline.
+     WhatsApp usa o telemóvel real 916 985 284.
+     ⚠️ EMAIL a confirmar (no site surge geral@... com acento inválido).
+     RGPD: formulário recolhe apenas nome + contacto + nome do animal.
+     =========================================================== -->
+<title>Centro Veterinário da Estação — Faro | Vet in Faro, Algarve</title>
+<meta name="description" content="Centro Veterinário da Estação, na baixa de Faro. Consultas, cirurgia, raio-X, laboratório, estética e urgências 24h. English spoken." />
+<style>
+  :root{
+    --brand:#1b4965;        /* azul-noite profissional */
+    --brand-dark:#12344a;
+    --accent:#f4a259;       /* âmbar acolhedor */
+    --ink:#14202a;
+    --muted:#56656f;
+    --bg:#f3f8fb;
+    --card:#ffffff;
+    --radius:16px;
+    --shadow:0 6px 24px rgba(0,0,0,.08);
+    --maxw:1080px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;color:var(--ink);background:var(--bg);line-height:1.6}
+  img{max-width:100%;display:block}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 20px}
+  .btn{display:inline-block;padding:14px 26px;border-radius:999px;font-weight:700;text-decoration:none;transition:.2s;cursor:pointer;border:none;font-size:1rem}
+  .btn-primary{background:var(--brand);color:#fff}
+  .btn-primary:hover{background:var(--brand-dark)}
+  .nav-cta{background:var(--accent);color:#3a2600;box-shadow:0 3px 12px rgba(20,30,44,.28);font-weight:800}
+  .nav-cta:hover{background:#e0892f;color:#3a2600}
+  .btn-ghost{background:transparent;color:#fff;border:2px solid #fff}
+  .btn-ghost:hover{background:#fff;color:var(--brand)}
+
+  [data-pt],[data-en]{display:none}
+  html[data-lang="pt"] [data-pt]{display:revert}
+  html[data-lang="en"] [data-en]{display:revert}
+
+  .urg{background:var(--accent);color:#3a2600;text-align:center;font-weight:700;padding:8px 12px;font-size:.92rem}
+  .urg a{color:#3a2600}
+
+  header.nav{position:sticky;top:0;z-index:50;background:rgba(243,248,251,.95);backdrop-filter:blur(8px);border-bottom:1px solid #d4e4ee}
+  .nav-inner{display:flex;align-items:center;justify-content:space-between;padding:14px 20px;max-width:var(--maxw);margin:0 auto;gap:16px}
+  .logo{font-weight:800;font-size:1.1rem;color:var(--brand);letter-spacing:.2px}
+  .nav-links{display:flex;gap:20px;align-items:center}
+  .nav-links a{text-decoration:none;font-weight:600;color:var(--ink)}
+  .nav-links a:hover{color:var(--brand)}
+  .lang{display:flex;gap:6px;align-items:center}
+  .lang button{border:1px solid var(--brand);background:#fff;color:var(--brand);border-radius:999px;padding:5px 11px;font-weight:700;cursor:pointer;font-size:.85rem}
+  .lang button.active{background:var(--brand);color:#fff}
+  @media(max-width:860px){.nav-links a:not(.btn){display:none}}
+
+  .hero{position:relative;min-height:72vh;display:flex;align-items:center;color:#fff;text-align:center;overflow:hidden;background:#0a2d3a}
+  .hero-track{position:absolute;inset:0;display:flex;transition:transform .8s ease}
+  .hero-slide{flex:0 0 100%;background-size:cover;background-position:center}
+  .hero::after{content:"";position:absolute;inset:0;background:linear-gradient(rgba(8,30,44,.5),rgba(8,30,44,.62));z-index:1}
+  .hero .wrap{position:relative;z-index:2;padding:56px 20px}
+  .hero .eyebrow{letter-spacing:3px;text-transform:uppercase;font-size:.8rem;color:var(--accent);font-weight:700;margin-bottom:14px}
+  .hero h1{font-size:clamp(2.1rem,5.5vw,3.7rem);line-height:1.08;margin-bottom:14px}
+  .hero p{font-size:1.18rem;max-width:660px;margin:0 auto 28px;opacity:.96}
+  .hero-cta{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+
+  section{padding:68px 0}
+  .section-title{text-align:center;margin-bottom:14px;font-size:2rem;color:var(--brand)}
+  .section-sub{text-align:center;color:var(--muted);max-width:660px;margin:0 auto 40px}
+
+  .grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+  @media(max-width:820px){.grid3{grid-template-columns:1fr 1fr}}
+  @media(max-width:520px){.grid3{grid-template-columns:1fr}}
+  .svc{background:var(--card);border-radius:var(--radius);box-shadow:var(--shadow);padding:24px;text-align:center}
+  .svc .ico{font-size:2rem;margin-bottom:10px}
+  .svc h3{color:var(--brand);font-size:1.05rem;margin-bottom:6px}
+  .svc p{color:var(--muted);font-size:.9rem}
+
+  .split{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:start}
+  @media(max-width:860px){.split{grid-template-columns:1fr}}
+  .card{background:var(--card);border-radius:var(--radius);box-shadow:var(--shadow);padding:30px}
+  form label{display:block;font-weight:600;margin:14px 0 6px}
+  form input,form select,form textarea{width:100%;padding:12px;border:1px solid #ddd;border-radius:10px;font-size:1rem;font-family:inherit}
+  .consent{font-size:.82rem;color:var(--muted);margin-top:12px;display:flex;gap:8px;align-items:flex-start}
+  .consent input{width:auto;margin-top:4px}
+  .info-row{display:flex;gap:12px;align-items:flex-start;margin-bottom:16px}
+  .info-row .ico{font-size:1.4rem}
+  .map{border:0;width:100%;height:260px;border-radius:var(--radius);margin-top:10px}
+  .flag{background:#fff7e0;border:1px solid #ecd98a;color:#7a5b00;border-radius:10px;padding:8px 12px;font-size:.82rem;display:inline-block}
+
+  footer{background:var(--ink);color:#cfe0ea;padding:42px 0;font-size:.9rem}
+  footer a{color:var(--accent);text-decoration:none}
+  .foot-grid{display:flex;justify-content:space-between;flex-wrap:wrap;gap:24px}
+  .legal{margin-top:24px;color:#7e919c;font-size:.8rem;text-align:center}
+
+  .float{position:fixed;right:18px;bottom:18px;display:flex;flex-direction:column;gap:12px;z-index:60}
+  .float a{width:56px;height:56px;border-radius:50%;display:flex;align-items:center;justify-content:center;
+    box-shadow:var(--shadow);text-decoration:none;font-size:1.5rem;color:#fff}
+  .fab-wa{background:#25d366}
+  .fab-call{background:var(--brand)}
+</style>
+</head>
+<body>
+
+<div class="urg">
+  <span data-pt>🚑 Urgências 24h: <a href="tel:+351916985284">916 985 284</a> · Geral: <a href="tel:+351289826382">289 826 382</a></span>
+  <span data-en>🚑 24h Emergencies: <a href="tel:+351916985284">916 985 284</a> · Reception: <a href="tel:+351289826382">289 826 382</a> · English spoken</span>
+</div>
+
+<header class="nav">
+  <div class="nav-inner">
+    <a href="#" class="logo" aria-label="Centro Veterinário da Estação" style="display:flex;align-items:center;text-decoration:none">
+      <svg viewBox="0 0 245 124" xmlns="http://www.w3.org/2000/svg" style="height:74px;width:auto;display:block" role="img" aria-label="Centro Veterinário da Estação">
+        <g fill="#c7ccd1"><circle cx="30" cy="11" r="5"/><circle cx="43" cy="6" r="6"/><circle cx="57" cy="10" r="5"/></g>
+        <g fill="#6b6f73"><polygon points="6,44 22,30 22,44"/><rect x="26" y="14" width="10" height="18" rx="1"/><rect x="23" y="11" width="16" height="5" rx="1"/><ellipse cx="58" cy="22" rx="7" ry="6"/><ellipse cx="76" cy="23" rx="6" ry="5"/><rect x="20" y="24" width="74" height="20" rx="10"/><circle cx="22" cy="34" r="10"/><rect x="92" y="10" width="40" height="34" rx="2"/><rect x="89" y="7" width="48" height="6" rx="2"/></g>
+        <rect x="101" y="18" width="22" height="14" rx="2" fill="#eef2f5"/>
+        <g fill="#3f4448"><circle cx="40" cy="46" r="11"/><circle cx="70" cy="46" r="11"/><circle cx="108" cy="46" r="11"/><circle cx="20" cy="48" r="6"/></g>
+        <g fill="#9aa0a5"><circle cx="40" cy="46" r="4"/><circle cx="70" cy="46" r="4"/><circle cx="108" cy="46" r="4"/></g>
+        <rect x="36" y="44" width="76" height="4" rx="2" fill="#9aa0a5"/>
+        <rect x="0" y="56" width="245" height="3" fill="#2b2b2b"/>
+        <g fill="#2b2b2b"><rect x="8" y="56" width="3" height="8"/><rect x="40" y="56" width="3" height="8"/><rect x="72" y="56" width="3" height="8"/><rect x="104" y="56" width="3" height="8"/><rect x="136" y="56" width="3" height="8"/></g>
+        <text x="4" y="88" font-family="Georgia,'Times New Roman',serif" font-weight="700" font-size="22" fill="#1b2c3a">Centro</text>
+        <path transform="translate(86,72)" d="M9 16 C2 11 0 7 0 4.5 C0 2 2 0 4.5 0 C6.6 0 8.2 1.4 9 3 C9.8 1.4 11.4 0 13.5 0 C16 0 18 2 18 4.5 C18 7 16 11 9 16 Z" fill="#d62828"/>
+        <text x="105" y="88" font-family="Georgia,'Times New Roman',serif" font-weight="700" font-size="22" fill="#1b2c3a">eterinário</text>
+        <text x="112" y="114" text-anchor="middle" font-family="Georgia,'Times New Roman',serif" font-weight="700" font-size="22" fill="#1b2c3a">da Estação</text>
+      </svg>
+    </a>
+    <nav class="nav-links">
+      <a href="#servicos"><span data-pt>Serviços</span><span data-en>Services</span></a>
+      <a href="#sobre"><span data-pt>O Centro</span><span data-en>About</span></a>
+      <a href="#equipa"><span data-pt>Equipa</span><span data-en>Team</span></a>
+      <a href="#instalacoes"><span data-pt>Instalações</span><span data-en>Facilities</span></a>
+      <a href="#contacto"><span data-pt>Contacto</span><span data-en>Contact</span></a>
+      <a class="btn nav-cta" href="#marcar"><span data-pt>Marcar consulta</span><span data-en>Book a visit</span></a>
+    </nav>
+    <div class="lang">
+      <button id="bt-pt" class="active" onclick="setLang('pt')">PT</button>
+      <button id="bt-en" onclick="setLang('en')">EN</button>
+    </div>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-track" id="heroTrack">
+    <div class="hero-slide" style="background-image:url('https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?auto=format&fit=crop&crop=entropy&w=1600&h=900&q=80')"></div>
+    <div class="hero-slide" style="background-image:url('https://images.unsplash.com/photo-1530281700549-e82e7bf110d6?auto=format&fit=crop&crop=entropy&w=1600&h=900&q=80')"></div>
+    <div class="hero-slide" style="background-image:url('https://images.unsplash.com/photo-1606107869722-d5cbadabe2f0?auto=format&fit=crop&crop=entropy&w=1600&h=900&q=80')"></div>
+    <div class="hero-slide" style="background-image:url('https://images.unsplash.com/photo-1492963892107-740cd39d9ff3?auto=format&fit=crop&crop=entropy&w=1600&h=900&q=80')"></div>
+    <div class="hero-slide" style="background-image:url('https://images.unsplash.com/photo-1444464666168-49d633b86797?auto=format&fit=crop&crop=entropy&w=1600&h=900&q=80')"></div>
+  </div>
+  <div class="wrap">
+    <div class="eyebrow"><span data-pt>Baixa de Faro · Algarve · desde 2012 · Urgências 24h</span><span data-en>Downtown Faro · Algarve · since 2012 · 24h Emergencies</span></div>
+    <h1><span data-pt>Uma equipa pronta a dar o melhor pelo seu companheiro</span><span data-en>A team ready to give their best for your companion</span></h1>
+    <p>
+      <span data-pt>Consultas, cirurgia geral e ortopédica, animais exóticos, imagiologia, laboratório e estética animal no centro de Faro — com urgências 24 horas. Falamos português e inglês.</span>
+      <span data-en>Consultations, general & orthopedic surgery, exotic animals, imaging, laboratory and grooming in the heart of Faro — with 24-hour emergencies. We speak English and Portuguese.</span>
+    </p>
+    <div class="hero-cta">
+      <a class="btn btn-primary" href="#marcar"><span data-pt>Marcar consulta</span><span data-en>Book a visit</span></a>
+      <a class="btn btn-ghost" href="#servicos"><span data-pt>Ver serviços</span><span data-en>Our services</span></a>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="servicos">
+  <div class="wrap">
+    <h2 class="section-title"><span data-pt>Os Nossos Serviços</span><span data-en>Our Services</span></h2>
+    <p class="section-sub"><span data-pt>Da consulta de rotina à cirurgia e ao diagnóstico — tudo no mesmo local.</span><span data-en>From routine consultations to surgery and diagnostics — all in one place.</span></p>
+    <div class="grid3">
+      <div class="svc"><div class="ico">🩺</div><h3><span data-pt>Consultas</span><span data-en>Consultations</span></h3><p><span data-pt>Consultas de medicina geral e acompanhamento de saúde.</span><span data-en>General medical consultations and health follow-up.</span></p></div>
+      <div class="svc"><div class="ico">🦎</div><h3><span data-pt>Consultas de Exóticos</span><span data-en>Exotic Animal Consultations</span></h3><p><span data-pt>Medicina dedicada a animais exóticos.</span><span data-en>Dedicated medicine for exotic animals.</span></p></div>
+      <div class="svc"><div class="ico">🐴</div><h3><span data-pt>Consultas de Equinos</span><span data-en>Equine Consultations</span></h3><p><span data-pt>Acompanhamento clínico de equinos.</span><span data-en>Clinical care for horses.</span></p></div>
+      <div class="svc"><div class="ico">💉</div><h3><span data-pt>Medicina Preventiva</span><span data-en>Preventive Medicine</span></h3><p><span data-pt>Vacinação, desparasitação e check-ups regulares.</span><span data-en>Vaccination, deworming and regular check-ups.</span></p></div>
+      <div class="svc"><div class="ico">🔬</div><h3><span data-pt>Análises Laboratoriais</span><span data-en>Laboratory Analyses</span></h3><p><span data-pt>Laboratório de análises clínicas no local.</span><span data-en>On-site clinical analysis laboratory.</span></p></div>
+      <div class="svc"><div class="ico">🔪</div><h3><span data-pt>Cirurgia Geral e Ortopédica</span><span data-en>General & Orthopedic Surgery</span></h3><p><span data-pt>Tecidos moles, intra-abdominal e ortopedia complexa (fraturas, displasia da anca e cotovelo), minimizando a dor.</span><span data-en>Soft tissue, intra-abdominal and complex orthopedics (fractures, hip & elbow dysplasia), minimizing pain.</span></p></div>
+      <div class="svc"><div class="ico">😴</div><h3><span data-pt>Anestesia</span><span data-en>Anesthesia</span></h3><p><span data-pt>Anestesia com monitorização, focada no conforto do animal.</span><span data-en>Monitored anesthesia focused on patient comfort.</span></p></div>
+      <div class="svc"><div class="ico">🩻</div><h3><span data-pt>Raio-X</span><span data-en>X-ray</span></h3><p><span data-pt>Essencial no diagnóstico de lesões osteoarticulares, respiratórias, gastrointestinais e da coluna.</span><span data-en>Key to diagnosing bone/joint, respiratory, gastrointestinal and spinal conditions.</span></p></div>
+      <div class="svc"><div class="ico">📡</div><h3><span data-pt>Ecografia</span><span data-en>Ultrasound</span></h3><p><span data-pt>Diagnóstico por ultrassons.</span><span data-en>Ultrasound diagnostics.</span></p></div>
+      <div class="svc"><div class="ico">❤️</div><h3><span data-pt>Eletrocardiograma</span><span data-en>Electrocardiogram</span></h3><p><span data-pt>Avaliação da função cardíaca (ECG).</span><span data-en>Cardiac function evaluation (ECG).</span></p></div>
+      <div class="svc"><div class="ico">🦷</div><h3><span data-pt>Destartarização</span><span data-en>Dental Scaling</span></h3><p><span data-pt>Limpeza dentária por ultrassons e polimento, para a saúde oral do seu animal.</span><span data-en>Ultrasonic dental scaling and polishing for your pet's oral health.</span></p></div>
+      <div class="svc"><div class="ico">🛁</div><h3><span data-pt>Estética Canina</span><span data-en>Dog Grooming</span></h3><p><span data-pt>Banhos e tosquias num espaço próprio.</span><span data-en>Baths and grooming in a dedicated salon.</span></p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="sobre" style="background:#e0edf4">
+  <div class="wrap" style="max-width:800px;text-align:center">
+    <h2 class="section-title"><span data-pt>O Centro Veterinário da Estação</span><span data-en>About the Clinic</span></h2>
+    <p style="color:var(--muted)">
+      <span data-pt>Fundado a 1 de outubro de 2012 pelos médicos veterinários Drº Pedro Caramelo e Drª Isabel Oliveira, o Centro Veterinário da Estação fica na baixa de Faro, junto à estação de comboios (freguesia de São Pedro), com estacionamento próximo. Num espaço de 220 m² com jardim, reúne consultórios, laboratório, sala de tratamentos, bloco cirúrgico, sala de raio-X, sala de estética canina e sala de recobro, com equipamento moderno de diagnóstico, monitorização e tratamento — e atendimento de urgência 24 horas. Na sala de recobro, com sistema de aquecimento, acompanhamos os animais na recuperação pós-cirúrgica e em internamento temporário, sempre com o objetivo de minimizar a dor e maximizar o conforto.</span>
+      <span data-en>Founded on 1 October 2012 by veterinarians Dr Pedro Caramelo and Dr Isabel Oliveira, Centro Veterinário da Estação sits in downtown Faro, next to the train station (São Pedro parish), with nearby parking. Across a 220 m² space with a garden, it brings together consultation rooms, a laboratory, a treatment room, a surgical suite, an X-ray room, a grooming salon and a recovery room, with modern diagnostic, monitoring and treatment equipment — and 24-hour emergency care. In the heated recovery room we care for animals recovering from surgery and in temporary hospitalisation, always aiming to minimise pain and maximise comfort.</span>
+    </p>
+  </div>
+</section>
+
+<!-- INSTALAÇÕES / GALLERY (fotos reais do site da clínica, via CDN Wix) -->
+<section id="instalacoes">
+  <div class="wrap">
+    <h2 class="section-title"><span data-pt>As Nossas Instalações</span><span data-en>Our Facilities</span></h2>
+    <p class="section-sub"><span data-pt>220 m² com consultórios, laboratório, bloco cirúrgico, sala de raio-X, estética canina e sala de recobro.</span><span data-en>220 m² with consultation rooms, a laboratory, a surgical suite, an X-ray room, a grooming salon and a recovery room.</span></p>
+    <div class="grid3">
+      <img loading="lazy" alt="Instalações do Centro Veterinário da Estação" style="width:100%;height:230px;object-fit:cover;border-radius:12px;box-shadow:var(--shadow)" src="https://static.wixstatic.com/media/bc3103_750703071e5548cd8737ccf6ff76e0ff.jpg/v1/fill/w_700,h_500,al_c,q_85,enc_auto/bc3103_750703071e5548cd8737ccf6ff76e0ff.jpg" />
+      <img loading="lazy" alt="Bloco cirúrgico" style="width:100%;height:230px;object-fit:cover;border-radius:12px;box-shadow:var(--shadow)" src="https://static.wixstatic.com/media/bc3103_c8aed35cccb6484d8bd24695844a989c.jpg/v1/fill/w_700,h_500,al_c,q_85,enc_auto/bc3103_c8aed35cccb6484d8bd24695844a989c.jpg" />
+      <img loading="lazy" alt="Sala de cirurgia" style="width:100%;height:230px;object-fit:cover;border-radius:12px;box-shadow:var(--shadow)" src="https://static.wixstatic.com/media/bc3103_46b7deb7da3344a797be0e1129c92965.jpg/v1/fill/w_700,h_500,al_c,q_85,enc_auto/bc3103_46b7deb7da3344a797be0e1129c92965.jpg" />
+      <img loading="lazy" alt="Equipamento clínico" style="width:100%;height:230px;object-fit:cover;border-radius:12px;box-shadow:var(--shadow)" src="https://static.wixstatic.com/media/bc3103_c2d8ee61eac3406ea97a9ceb143402a9.jpg/v1/fill/w_700,h_500,al_c,q_85,enc_auto/bc3103_c2d8ee61eac3406ea97a9ceb143402a9.jpg" />
+      <img loading="lazy" alt="Sala de tratamentos" style="width:100%;height:230px;object-fit:cover;border-radius:12px;box-shadow:var(--shadow)" src="https://static.wixstatic.com/media/bc3103_78c4c7685cfc4c88a370575e918412d1.jpg/v1/fill/w_700,h_500,al_c,q_85,enc_auto/bc3103_78c4c7685cfc4c88a370575e918412d1.jpg" />
+      <img loading="lazy" alt="Instalações do centro" style="width:100%;height:230px;object-fit:cover;border-radius:12px;box-shadow:var(--shadow)" src="https://static.wixstatic.com/media/bc3103_5161043aa1b04109ac0a77ebe819e1e5.jpg/v1/fill/w_700,h_500,al_c,q_85,enc_auto/bc3103_5161043aa1b04109ac0a77ebe819e1e5.jpg" />
+    </div>
+    <p class="flag" style="margin-top:18px">ℹ️ <span data-pt>Demonstração — fotos do próprio centro (atualmente alojadas no Wix). Na versão final, descarregar e alojar no próprio site.</span><span data-en>Demo — the clinic's own photos (currently hosted on Wix). For the live version, download and self-host them.</span></p>
+  </div>
+</section>
+
+<!-- TEAM -->
+<section id="equipa" style="background:#e0edf4">
+  <div class="wrap">
+    <h2 class="section-title"><span data-pt>A Nossa Equipa</span><span data-en>Our Team</span></h2>
+    <p class="section-sub"><span data-pt>Profissionais dedicados à saúde e bem-estar do seu animal.</span><span data-en>Professionals dedicated to your pet's health and well-being.</span></p>
+    <div class="grid3">
+      <div class="svc"><div class="ico">👨‍⚕️</div><h3>Drº Pedro Caramelo</h3><p><span data-pt>Médico Veterinário · co-fundador. Cirurgia geral e ortopédica, animais exóticos e imagiologia. Licenciado pela UTAD (2003).</span><span data-en>Veterinarian · co-founder. General & orthopedic surgery, exotic animals and imaging. Graduated from UTAD (2003).</span></p></div>
+      <div class="svc"><div class="ico">👩‍⚕️</div><h3>Drª Isabel Oliveira</h3><p><span data-pt>Médica Veterinária · co-fundadora. Clínica de equinos e medicina e cirurgia de cães e gatos. Licenciada pela UTAD (2002).</span><span data-en>Veterinarian · co-founder. Equine practice and dog & cat medicine and surgery. Graduated from UTAD (2002).</span></p></div>
+      <div class="svc"><div class="ico">🧑‍💼</div><h3>Ana Rita Santos</h3><p><span data-pt>Rececionista e auxiliar veterinária. Na equipa desde a abertura do centro.</span><span data-en>Receptionist and veterinary auxiliary. With the team since the clinic opened.</span></p></div>
+      <div class="svc"><div class="ico">🧑‍💼</div><h3>Ana Sofia Nogueira</h3><p><span data-pt>Rececionista e auxiliar veterinária. Integrou a equipa em 2013.</span><span data-en>Receptionist and veterinary auxiliary. Joined the team in 2013.</span></p></div>
+      <div class="svc"><div class="ico">✂️</div><h3>Tom</h3><p><span data-pt>Tosquiador com mais de 13 anos de experiência em estética canina.</span><span data-en>Groomer with over 13 years of experience in dog grooming.</span></p></div>
+    </div>
+  </div>
+</section>
+
+<!-- APPOINTMENT + CONTACT -->
+<section id="marcar">
+  <div class="wrap">
+    <h2 class="section-title"><span data-pt>Marcar Consulta</span><span data-en>Book a Visit</span></h2>
+    <p class="section-sub"><span data-pt>Deixe o seu contacto e ligamos para confirmar.</span><span data-en>Leave your details and we'll call you to confirm.</span></p>
+    <div class="split">
+      <div class="card">
+        <form onsubmit="event.preventDefault();alert('Demo — na versão final liga ao email/WhatsApp do centro. / Demo only.');">
+          <label><span data-pt>O seu nome</span><span data-en>Your name</span></label>
+          <input type="text" required />
+          <label><span data-pt>Telefone</span><span data-en>Phone</span></label>
+          <input type="tel" placeholder="+351 / +44 ..." required />
+          <label><span data-pt>Nome do animal</span><span data-en>Pet's name</span></label>
+          <input type="text" />
+          <label><span data-pt>Serviço pretendido</span><span data-en>Service needed</span></label>
+          <select>
+            <option data-pt>Consulta</option><option data-en>Consultation</option>
+            <option data-pt>Consulta de exóticos</option><option data-en>Exotic animal consultation</option>
+            <option data-pt>Consulta de equinos</option><option data-en>Equine consultation</option>
+            <option data-pt>Medicina preventiva / vacinação</option><option data-en>Preventive medicine / vaccination</option>
+            <option data-pt>Cirurgia</option><option data-en>Surgery</option>
+            <option data-pt>Raio-X / ecografia / análises</option><option data-en>X-ray / ultrasound / lab tests</option>
+            <option data-pt>Destartarização</option><option data-en>Dental scaling</option>
+            <option data-pt>Banho & tosquia</option><option data-en>Bath & grooming</option>
+          </select>
+          <label><span data-pt>Data preferida</span><span data-en>Preferred date</span></label>
+          <input type="date" />
+          <label class="consent"><input type="checkbox" required />
+            <span data-pt>Autorizo o contacto para marcação. Não partilhe aqui informação clínica — apenas em consulta. (RGPD)</span>
+            <span data-en>I agree to be contacted to book. Please don't share clinical details here — only in consultation. (GDPR)</span>
+          </label>
+          <button class="btn btn-primary" style="margin-top:16px;width:100%" type="submit"><span data-pt>Pedir marcação</span><span data-en>Request appointment</span></button>
+        </form>
+      </div>
+      <div id="contacto">
+        <div class="info-row"><span class="ico">📍</span><div><strong><span data-pt>Morada</span><span data-en>Address</span></strong><br>Avenida da República<br>8000-079 Faro, Algarve</div></div>
+        <div class="info-row"><span class="ico">🕒</span><div><strong><span data-pt>Horário</span><span data-en>Opening hours</span></strong><br><span data-pt>Seg–Sex: 10:30–13:00 · 15:00–20:00<br>Sáb: 10:30–13:00 · Urgências 24h</span><span data-en>Mon–Fri: 10:30–13:00 · 15:00–20:00<br>Sat: 10:30–13:00 · 24h emergencies</span></div></div>
+        <div class="info-row"><span class="ico">📞</span><div><strong><span data-pt>Telefone</span><span data-en>Phone</span></strong><br><a href="tel:+351289826382">289 826 382</a> · <a href="tel:+351916985284">916 985 284</a></div></div>
+        <div class="info-row"><span class="ico">💬</span><div><strong>WhatsApp</strong><br><a href="https://wa.me/351916985284" target="_blank" rel="noopener">916 985 284</a></div></div>
+        <iframe class="map" loading="lazy" src="https://www.google.com/maps?q=Avenida+da+Rep%C3%BAblica+Faro&output=embed"></iframe>
+      </div>
+    </div>
+    <p class="flag" style="margin-top:18px">ℹ️ <span data-pt>Demonstração — confirmar o email do centro para receber as marcações.</span><span data-en>Demo — confirm the clinic's email to receive bookings.</span></p>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="wrap foot-grid">
+    <div>
+      <div class="logo" style="color:#fff">Centro Veterinário da Estação</div>
+      <p style="margin-top:8px">Avenida da República<br>8000-079 Faro, Algarve</p>
+    </div>
+    <div>
+      <strong><span data-pt>Contacto</span><span data-en>Contact</span></strong><br>
+      <a href="tel:+351289826382">289 826 382</a><br>
+      <span data-pt>Urgências 24h:</span><span data-en>24h emergencies:</span> <a href="tel:+351916985284">916 985 284</a>
+    </div>
+    <div>
+      <strong><span data-pt>Horário</span><span data-en>Hours</span></strong><br>
+      <span data-pt>Seg–Sex 10:30–13:00 · 15:00–20:00<br>Sáb 10:30–13:00</span><span data-en>Mon–Fri 10:30–13:00 · 15:00–20:00<br>Sat 10:30–13:00</span>
+    </div>
+  </div>
+  <div class="legal wrap">
+    © <span id="year"></span> Centro Veterinário da Estação · Faro. ·
+    <a href="#"><span data-pt>Política de Privacidade (RGPD)</span><span data-en>Privacy Policy (GDPR)</span></a> ·
+    <span data-pt>Demonstração de site criada por</span><span data-en>Demo site by</span> [O Seu Nome].
+  </div>
+</footer>
+
+<div class="float">
+  <a class="fab-wa" href="https://wa.me/351916985284" title="WhatsApp" target="_blank" rel="noopener">🟢</a>
+  <a class="fab-call" href="tel:+351289826382" title="Ligar / Call">📞</a>
+</div>
+
+<script>
+  function setLang(l){
+    document.documentElement.setAttribute('data-lang', l);
+    document.documentElement.setAttribute('lang', l === 'pt' ? 'pt-PT' : 'en');
+    document.getElementById('bt-pt').classList.toggle('active', l==='pt');
+    document.getElementById('bt-en').classList.toggle('active', l==='en');
+    // Show only the active language's <select> options. CSS display on <option>
+    // is unreliable in some browsers (e.g. older Safari), so enforce it here.
+    document.querySelectorAll('select').forEach(function(sel){
+      var firstVisible = null;
+      sel.querySelectorAll('option[data-pt],option[data-en]').forEach(function(o){
+        var show = o.hasAttribute(l === 'pt' ? 'data-pt' : 'data-en');
+        o.hidden = !show; o.disabled = !show; o.style.display = show ? '' : 'none';
+        if(show && !firstVisible) firstVisible = o;
+      });
+      if(firstVisible && (!sel.selectedOptions.length || sel.selectedOptions[0].hidden)){
+        firstVisible.selected = true;
+      }
+    });
+  }
+  document.getElementById('year').textContent = new Date().getFullYear();
+  setLang('pt'); // apply initial language state (including <select> options)
+  (function(){var t=document.getElementById('heroTrack');if(t){var n=t.children.length,i=0;setInterval(function(){i=(i+1)%n;t.style.transform='translateX(-'+(i*100)+'%)';},4500);}})();
+</script>
+</body>
+</html>
